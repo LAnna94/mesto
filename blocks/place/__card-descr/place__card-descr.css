@@ -1,0 +1,5 @@
+.place__card-descr {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 21px 31px 15px;
+}
