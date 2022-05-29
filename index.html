@@ -17,13 +17,12 @@
     <section class="profile">
       <img src="images/сousteau.jpg" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
-        <div class="wrapper">
-          <p class="profile__info-name">Жак-Ив Кусто</p>
-          <button class="button-edit-profile"></button>
+        <div class="profile__header">
+          <p class="profile__name">Жак-Ив Кусто</p>
+          <button class="profile__button-edit-profile"></button>
         </div>
-        <p class="profile__info-descr">Исследователь океана</p>
+        <p class="profile__descr">Исследователь океана</p>
       </div>
-
       <button class="button-add"></button>
     </section>
     <section class="places">
@@ -32,42 +31,42 @@
           <img src="images/karachayevsk.jpg" alt="Карачаевск" class="place__photo">
           <div class="place__card-descr">
             <h2 class="place__header">Карачаевск</h2>
-            <img src="images/icon-like.svg" alt="Лайк" class="icon-like">
+            <img src="images/icon-like.svg" alt="Лайк" class="place__icon-like">
           </div>
         </li>
         <li class="place__card">
           <img src="images/elbrus.png" alt="Эльбрус" class="place__photo">
           <div class="place__card-descr">
             <h2 class="place__header">Гора Эльбрус</h2>
-            <img src="images/icon-like.svg" alt="Лайк" class="icon-like">
+            <img src="images/icon-like.svg" alt="Лайк" class="place__icon-like">
           </div>
         </li>
         <li class="place__card">
           <img src="images/dombay.png" alt="Домбай" class="place__photo">
           <div class="place__card-descr">
             <h2 class="place__header">Домбай</h2>
-            <img src="images/icon-like.svg" alt="Лайк" class="icon-like">
+            <img src="images/icon-like.svg" alt="Лайк" class="place__icon-like">
           </div>
         </li>
         <li class="place__card">
           <img src="images/elbrus.png" alt="Гора Эльбрус" class="place__photo">
           <div class="place__card-descr">
             <h2 class="place__header">Гора Эльбрус</h2>
-            <img src="images/icon-like.svg" alt="Лайк" class="icon-like">
+            <img src="images/icon-like.svg" alt="Лайк" class="place__icon-like">
           </div>
         </li>
         <li class="place__card">
           <img src="images/dombay.png" alt="Домбай" class="place__photo">
           <div class="place__card-descr">
             <h2 class="place__header">Домбай</h2>
-            <img src="images/icon-like.svg" alt="Лайк" class="icon-like">
+            <img src="images/icon-like.svg" alt="Лайк" class="place__icon-like">
           </div>
         </li>
         <li class="place__card">
           <img src="images/karachayevsk.jpg" alt="" class="place__photo">
           <div class="place__card-descr">
             <h2 class="place__header">Карачаево-Черкесия</h2>
-            <img src="images/icon-like.svg" alt="Лайк" class="icon-like">
+            <img src="images/icon-like.svg" alt="Лайк" class="place__icon-like">
           </div>
         </li>
       </ul>
@@ -76,6 +75,22 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button"></button>
+      <form class="profile-form">
+        <h2 class="profile-form__heading">Редактировать профиль</h2>
+        <fieldset class="profile-form__input-container">
+          <label for="name" class="profile-form__label"></label>
+          <input type="text" name="name" id="name" value="Жак-Ив Кусто" class="profile-form__item profile-form__item_name">
+          <label for="descr" class="profile-form__label"></label>
+          <input type="text" name="descr" id="descr" value="Исследователь океана" class="profile-form__item profile-form__item_descr">
+        </fieldset>
+        <button class="profile-form__save-button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <script src="script/index.js"></script>
 </body>
 
 </html>

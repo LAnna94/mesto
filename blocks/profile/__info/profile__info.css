@@ -2,3 +2,18 @@
   width: calc(100% - 30px - 120px - 150px);
   padding-left: 30px;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile__info {
+    width: calc(100% - 25px - 100px - 125px);
+    padding-left: 25px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    width: 100%;
+    padding: 26px 0 36px;
+    text-align: center;
+  }
+}

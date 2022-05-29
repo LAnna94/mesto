@@ -1,0 +1,10 @@
+.profile-form {
+  width: 350px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .profile-form {
+    width: 282px;
+  }
+}
