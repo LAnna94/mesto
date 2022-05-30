@@ -18,5 +18,6 @@
   .profile__descr {
     font-size: 14px;
     padding-top: 14px;
+    line-height: 17px;
   }
 }
