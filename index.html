@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
@@ -18,12 +18,12 @@
       <img src="images/сousteau.jpg" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__header">
-          <p class="profile__name">Жак-Ив Кусто</p>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__button-edit-profile"></button>
         </div>
         <p class="profile__descr">Исследователь океана</p>
       </div>
-      <button class="button-add"></button>
+      <button class="profile__add-button"></button>
     </section>
     <section class="places">
       <ul class="place">
@@ -79,12 +79,14 @@
     <div class="popup__container">
       <button class="popup__close-button"></button>
       <form class="profile-form">
-        <h2 class="profile-form__heading">Редактировать профиль</h2>
+        <h2 class="profile-form__title">Редактировать профиль</h2>
         <fieldset class="profile-form__input-container">
           <label for="name" class="profile-form__label"></label>
-          <input type="text" name="name" id="name" value="Жак-Ив Кусто" class="profile-form__item profile-form__item_name">
+          <input type="text" name="name" id="name" value="Жак-Ив Кусто"
+            class="profile-form__item profile-form__item_name">
           <label for="descr" class="profile-form__label"></label>
-          <input type="text" name="descr" id="descr" value="Исследователь океана" class="profile-form__item profile-form__item_descr">
+          <input type="text" name="descr" id="descr" value="Исследователь океана"
+            class="profile-form__item profile-form__item_descr">
         </fieldset>
         <button class="profile-form__save-button">Сохранить</button>
       </form>

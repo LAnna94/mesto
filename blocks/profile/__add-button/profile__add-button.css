@@ -1,28 +1,28 @@
-.button-add {
+.profile__add-button {
   width: 150px;
   height: 50px;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
-  background: url(../../images/icon-plus.svg) center no-repeat;
+  background: url(../../../images/icon-plus.svg) center no-repeat;
   padding: 0;
 }
 
-.button-add:hover {
+.profile__add-button:hover {
   opacity: 0.6;
   transition: 0.5s;
 }
 
 @media screen and (max-width: 1023px) {
-  .button-add {
+  .profile__add-button {
     width: 125px;
     height: 40px;
+    background-size: 16px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .button-add {
+  .profile__add-button {
     width: 282px;
     height: 50px;
-    background-size: 16px;
   }
 }

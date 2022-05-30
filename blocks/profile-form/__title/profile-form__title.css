@@ -1,4 +1,4 @@
-.profile-form__heading {
+.profile-form__title {
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 900;
   font-size: 24px;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile-form__heading {
+  .profile-form__title {
     font-size: 18px;
     padding-top: 25px;
     text-align: center;
