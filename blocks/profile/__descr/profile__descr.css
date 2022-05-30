@@ -16,6 +16,7 @@
 
 @media screen and (max-width: 767px) {
   .profile__descr {
-    font-size: 14px;;
+    font-size: 14px;
+    padding-top: 14px;
   }
 }
