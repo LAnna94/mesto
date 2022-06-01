@@ -1,16 +1,17 @@
-.profile-form__title {
+.popup__title {
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 900;
   font-size: 24px;
   color: #000000;
-  margin: 0;
-  padding-top: 34px;
+  margin: 0 auto;
+  max-width: 358px;
+  line-height: 25px;
 }
 
 @media screen and (max-width: 767px) {
-  .profile-form__title {
+  .popup__title {
+    max-width: 238px;
     font-size: 18px;
-    padding-top: 25px;
-    text-align: center;
+    line-height: 22px;
   }
 }

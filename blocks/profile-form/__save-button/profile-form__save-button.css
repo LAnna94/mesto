@@ -10,11 +10,12 @@
   color: #FFFFFF;
   padding: 0;
   border: none;
+  transition: 0.5s;
 }
 
 .profile-form__save-button:hover {
   opacity: 0.8;
-  transition: 0.5s;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {

@@ -5,11 +5,12 @@
   border-radius: 2px;
   background: url(../../../images/icon-plus.svg) center no-repeat;
   padding: 0;
+  transition: 0.5s;
 }
 
 .profile__add-button:hover {
   opacity: 0.6;
-  transition: 0.5s;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1023px) {

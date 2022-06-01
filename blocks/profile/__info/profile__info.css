@@ -1,10 +1,10 @@
 .profile__info {
-  width: calc(100% - 30px - 120px - 150px);
+  width: calc(100% - 30px * 2 - 120px - 150px);
 }
 
 @media screen and (max-width: 1023px) {
   .profile__info {
-    width: calc(100% - 30px - 100px - 125px);
+    width: calc(100% - 30px * 2 - 100px - 125px);
   }
 }
 
