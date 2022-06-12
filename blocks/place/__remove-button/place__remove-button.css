@@ -1,0 +1,11 @@
+.place__remove-button {
+  border: none;
+  background: url(../../../images/bin-icon.svg) no-repeat center;
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  padding: 0;
+}
