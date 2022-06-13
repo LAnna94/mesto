@@ -8,4 +8,10 @@
   right: 20px;
   z-index: 1;
   padding: 0;
+  transition: 0.5s;
+}
+
+.place__remove-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
