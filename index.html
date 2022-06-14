@@ -32,7 +32,7 @@
 
       <template class="place-template">
         <li class="place__card">
-          <img alt="Изображение карточки" class="place__photo">
+          <img class="place__photo">
           <button type="button" class="place__remove-button" aria-label="Удалить карточку"></button>
           <div class="place__description">
             <h2 class="place__header"></h2>
@@ -64,18 +64,18 @@
       <h2 class="popup__title">Новое место</h2>
       <form name="add-card" class="profile-form add-form">
         <fieldset class="profile-form__input-container">
-          <input type="text" name="placename" id="placename" class="profile-form__input profile-form__input_type_placename" required>
-          <input type="text" name="link" id="link" class="profile-form__input profile-form__input_type_link" required>
+          <input type="text" name="placename" id="placename" placeholder="Название" class="profile-form__input profile-form__input_type_placename" required>
+          <input type="text" name="link" id="link" placeholder="Ссылка на картинку" class="profile-form__input profile-form__input_type_link" required>
         </fieldset>
         <button type="submit" class="profile-form__save-button">Создать</button>
       </form>
     </div>
   </div>
   <div class="popup popup_theme_dark" id="big-picture">
-    <div class="popup-big-picture__container">
+    <div class="popup__big-picture-container">
       <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
-      <img alt="Просмотр фотографии карточки" class="popup-big-picture__photo">
-      <p class="popup-big-picture__capture"></p>
+      <img class="popup__big-picture-photo">
+      <p class="popup__big-picture-capture"></p>
     </div>
   </div>
   <script src="script/index.js"></script>

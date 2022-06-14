@@ -13,14 +13,13 @@ const newPlaceLink = document.querySelector('.profile-form__input_type_link');
 const bigPicturePopup = document.querySelector('#big-picture');
 const addCloseButton = addPopup.querySelector('.popup__close-button');
 const bigPictureCloseButton = bigPicturePopup.querySelector('.popup__close-button')
-const bigPicture = document.querySelector('.popup-big-picture__photo');
-const pictureCupture = document.querySelector('.popup-big-picture__capture');
+const bigPicture = document.querySelector('.popup__big-picture-photo');
+const pictureCupture = document.querySelector('.popup__big-picture-capture');
 
 
 function closePopup () {
   popup.classList.remove('popup_opened') || addPopup.classList.remove('popup_opened') || bigPicturePopup.classList.remove('popup_opened');
 }
-
 
 function openPopup () {
   nameInput.value = profileName.textContent;
@@ -39,8 +38,8 @@ function formSubmitHandler (evt) {
 }
 
 function openAddPopup () {
-  newPlaceName.value = 'Название';
-  newPlaceLink.value = 'Ссылка на картинку';
+  newPlaceName.value = '';
+  newPlaceLink.value = '';
 
   addPopup.classList.add('popup_opened');
 }
@@ -76,16 +75,14 @@ const initialCards = [
   }
 ];
 
-
 initialCards.forEach(function (element) {
   const cardElement = cardTemplate.querySelector('.place__card').cloneNode(true);
 
   cardElement.querySelector('.place__photo').src = element.link;
+  cardElement.querySelector('.place__photo').alt = element.name;
   cardElement.querySelector('.place__header').textContent = element.name;
 
-  cardElement.querySelector('.place__like-button').addEventListener('click', (e) => {
-    e.target.classList.toggle('place__like-button_active');
-  });
+  cardElement.querySelector('.place__like-button').addEventListener('click', likeStatus);
 
   cardElement.querySelector('.place__remove-button').addEventListener('click', () => {
     deleteCard(cardElement);
@@ -93,6 +90,7 @@ initialCards.forEach(function (element) {
 
   cardElement.querySelector('.place__photo').addEventListener('click', () => {
     bigPicture.src = element.link;
+    bigPicture.alt = element.name;
     pictureCupture.textContent = element.name;
 
     bigPicturePopup.classList.add('popup_opened')
@@ -107,11 +105,10 @@ function formAddCard (evt) {
   const cardElement = cardTemplate.querySelector('.place__card').cloneNode(true);
 
   cardElement.querySelector('.place__photo').src = newPlaceLink.value;
+  cardElement.querySelector('.place__photo').alt = newPlaceName.value;
   cardElement.querySelector('.place__header').textContent = newPlaceName.value;
 
-  cardElement.querySelector('.place__like-button').addEventListener('click', (e) => {
-    e.target.classList.toggle('place__like-button_active');
-  });
+  cardElement.querySelector('.place__like-button').addEventListener('click', likeStatus);
 
   cardElement.querySelector('.place__remove-button').addEventListener('click', () => {
     deleteCard(cardElement);
@@ -119,6 +116,7 @@ function formAddCard (evt) {
 
   cardElement.querySelector('.place__photo').addEventListener('click', () => {
     bigPicture.src = newPlaceLink.value;
+    bigPicture.alt = newPlaceName.value;
     pictureCupture.textContent = newPlaceName.value;
 
     bigPicturePopup.classList.add('popup_opened')
@@ -130,6 +128,10 @@ function formAddCard (evt) {
 
 function deleteCard (item) {
   item.remove();
+}
+
+function likeStatus (e) {
+  e.target.classList.toggle('place__like-button_active');
 }
 
 editForm.addEventListener('submit', formSubmitHandler);
