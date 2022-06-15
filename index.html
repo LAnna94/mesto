@@ -29,22 +29,21 @@
       <ul class="place">
 
       </ul>
-
-      <template class="place-template">
-        <li class="place__card">
-          <img class="place__photo">
-          <button type="button" class="place__remove-button" aria-label="Удалить карточку"></button>
-          <div class="place__description">
-            <h2 class="place__header"></h2>
-            <button type="button" class="place__like-button" aria-label="Нравится"></button>
-          </div>
-        </li>
-      </template>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
+  <template class="place-template">
+    <li class="place__card">
+      <img class="place__photo">
+      <button type="button" class="place__remove-button" aria-label="Удалить карточку"></button>
+      <div class="place__description">
+        <h2 class="place__header"></h2>
+        <button type="button" class="place__like-button" aria-label="Нравится"></button>
+      </div>
+    </li>
+  </template>
   <div class="popup" id="edit-form">
     <div class="popup__container">
       <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
