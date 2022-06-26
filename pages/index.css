@@ -31,7 +31,10 @@
 @import url(../blocks/profile-form/profile-form.css);
 @import url(../blocks/profile-form/__input-container/profile-form__input-container.css);
 @import url(../blocks/profile-form/__input/profile-form__input.css);
+@import url(../blocks/profile-form/__input/_type/profile-form__input_type_error.css);
+@import url(../blocks/profile-form/__input-error/profile-form__input-error.css);
 @import url(../blocks/profile-form/__save-button/profile-form__save-button.css);
+@import url(../blocks/profile-form/__save-button/_disabled/profile-form__save-button_disabled.css);
 @import url(../blocks/popup/__big-picture-container/popup__big-picture-container.css);
 @import url(../blocks/popup/__big-picture-capture/popup__big-picture-capture.css);
 @import url(../blocks/popup/__big-picture-photo/popup__big-picture-photo.css);

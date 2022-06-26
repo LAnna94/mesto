@@ -48,10 +48,12 @@
     <div class="popup__container">
       <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="edit-profile" class="profile-form">
+      <form name="edit-profile" class="profile-form" novalidate>
         <fieldset class="profile-form__input-container">
-          <input type="text" name="username" id="name" class="profile-form__input profile-form__input_type_name" required>
-          <input type="text" name="description" id="description" class="profile-form__input profile-form__input_type_description" required>
+          <input type="text" name="username" id="name-input" class="profile-form__input profile-form__input_type_name" minlength="2" maxlength="40" required>
+          <span class="name-input-error profile-form__input-error"></span>
+          <input type="text" name="description" id="description-input" class="profile-form__input profile-form__input_type_description" minlength="2" maxlength="200" required>
+          <span class="description-input-error profile-form__input-error"></span>
         </fieldset>
         <button type="submit" class="profile-form__save-button">Сохранить</button>
       </form>
@@ -61,10 +63,12 @@
     <div class="popup__container">
       <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="add-card" class="profile-form add-form">
+      <form name="add-card" class="profile-form add-form" novalidate>
         <fieldset class="profile-form__input-container">
-          <input type="text" name="placename" id="placename" placeholder="Название" class="profile-form__input profile-form__input_type_placename" required>
-          <input type="text" name="link" id="link" placeholder="Ссылка на картинку" class="profile-form__input profile-form__input_type_link" required>
+          <input type="text" name="placename" id="placename-input" placeholder="Название" class="profile-form__input profile-form__input_type_placename" minlength="2" maxlength="30" required>
+          <span class="placename-input-error profile-form__input-error"></span>
+          <input type="url" name="link" id="link-input" placeholder="Ссылка на картинку" class="profile-form__input profile-form__input_type_link" required>
+          <span class="link-input-error profile-form__input-error"></span>
         </fieldset>
         <button type="submit" class="profile-form__save-button">Создать</button>
       </form>
@@ -78,6 +82,7 @@
     </div>
   </div>
   <script src="script/index.js"></script>
+  <script src="script/validate.js"></script>
 </body>
 
 </html>
