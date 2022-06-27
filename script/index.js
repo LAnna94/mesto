@@ -28,6 +28,8 @@ function openPopup(popup) {
 
   popup.addEventListener('click', closePopupByOverlay);
   document.addEventListener('keydown', closePopupOnEsc);
+
+  enableValidation(config);
 }
 
 function closePopupOnEsc(evt) {

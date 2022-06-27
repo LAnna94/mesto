@@ -1,11 +1,9 @@
 .profile-form__save-button_disabled {
-  border: 1px solid #000000;
-  color: #000000;
+  border: 1px solid rgba(0, 0, 0, .2);
+  color: rgba(0, 0, 0, .2);
   background-color: transparent;
-  opacity: 0.2;
 }
 
-.profile-form__save-button:hover {
-  opacity: 0.2;
+.profile-form__save-button_disabled:hover {
   cursor: default;
 }
