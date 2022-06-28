@@ -45,6 +45,8 @@ const initialCards = [
   }
 ];
 
+enableValidation(config);
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
@@ -58,7 +60,6 @@ function openPopup(popup) {
   popup.addEventListener('click', closePopupByOverlay);
   document.addEventListener('keydown', closePopupOnEsc);
 
-  enableValidation(config);
 }
 
 function closePopupOnEsc(evt) {
@@ -70,11 +71,8 @@ function closePopupOnEsc(evt) {
 }
 
 function closePopupByOverlay(evt) {
-  const popupOpened = document.querySelector('.popup_opened')
-
   if (evt.target === evt.currentTarget) {
-    closePopup(popupOpened);
-
+    closePopup(evt.currentTarget);
   }
 }
 
