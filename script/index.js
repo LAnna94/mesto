@@ -1,6 +1,5 @@
 const buttonEditProfile = document.querySelector('.profile__button-edit-profile');
 const popupEditProfile = document.querySelector('#edit-form');
-const popupEditProfileCloseButton = popupEditProfile.querySelector('.popup__close-button');
 const formEditProfile = document.querySelector('.profile-form');
 const nameInput = document.querySelector('.profile-form__input_type_name');
 const descriptionInput = document.querySelector('.profile-form__input_type_description');
@@ -11,8 +10,6 @@ const popupAddCard = document.querySelector('#add-form');
 const newPlaceName = document.querySelector('.profile-form__input_type_placename');
 const newPlaceLink = document.querySelector('.profile-form__input_type_link');
 const imagePopup = document.querySelector('#big-picture');
-const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close-button');
-const imageCloseButton = imagePopup.querySelector('.popup__close-button')
 const pictureView = document.querySelector('.popup__big-picture-photo');
 const pictureCupture = document.querySelector('.popup__big-picture-capture');
 const cardTemplate = document.querySelector('.place-template').content
@@ -48,14 +45,14 @@ const initialCards = [
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
-  popup.removeEventListener('click', closePopupByOverlay);
+  popup.removeEventListener('mousedown', closePopupByOverlay);
   document.removeEventListener('keydown', closePopupOnEsc);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
-  popup.addEventListener('click', closePopupByOverlay);
+  popup.addEventListener('mousedown', closePopupByOverlay);
   document.addEventListener('keydown', closePopupOnEsc);
 }
 
@@ -68,9 +65,9 @@ function closePopupOnEsc(evt) {
 }
 
 function closePopupByOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
+  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
     closePopup(evt.currentTarget)
-  };
+  }
 }
 
 function openProfilePopup() {
@@ -145,14 +142,5 @@ function renderCard(evt) {
 formEditProfile.addEventListener('submit', handleSubmitForm);
 buttonEditProfile.addEventListener('click', openProfilePopup);
 buttonAddCard.addEventListener('click', openAddPopup);
-popupAddCardCloseButton.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
-imageCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
-popupEditProfileCloseButton.addEventListener('click', () => {
-  closePopup(popupEditProfile);
-});
 formAddCard.addEventListener('submit', renderCard);
 enableValidation(config);
