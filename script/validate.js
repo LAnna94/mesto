@@ -1,4 +1,4 @@
-const config = {
+export const config = {
   formSelector: '.profile-form',
   inputSelector: '.profile-form__input',
   submitButtonSelector: '.profile-form__save-button',
@@ -7,7 +7,7 @@ const config = {
   errorClass: 'profile-form__input-error_active'
 };
 
-const showInputError = (formElement, inputElement, errorMessage, config) => {
+/* const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add(config.inputErrorClass);
@@ -66,12 +66,4 @@ const toggleButtonState = (inputList, buttonElement, config) => {
     buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
   }
-};
-
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-
-  formList.forEach((formElement) => {
-    setEventListener(formElement, config);
-  })
-}
+}; */

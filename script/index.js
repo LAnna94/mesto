@@ -1,3 +1,7 @@
+import Card from './Card.js';
+import { config } from './validate.js';
+import FormValidator from './FormValidator.js'
+
 const buttonEditProfile = document.querySelector('.profile__button-edit-profile');
 const popupEditProfile = document.querySelector('#edit-form');
 const formEditProfile = document.querySelector('.profile-form');
@@ -90,12 +94,13 @@ function openAddPopup() {
   const buttonAddCard = document.querySelectorAll('.profile-form__save-button');
 
   formAddCard.reset();
-  disableButton(buttonAddCard[1]);
+  formNewCard.resetValidation();
+  // disableButton(buttonAddCard[1]);
 
   openPopup(popupAddCard);
 }
 
-const createCard = (name, link) => {
+/* const createCard = (name, link) => {
   const cardElement = cardTemplate.querySelector('.place__card').cloneNode(true);
   const cardElementPhoto = cardElement.querySelector('.place__photo');
 
@@ -118,29 +123,67 @@ const createCard = (name, link) => {
   });
 
   return cardElement;
-}
+} */
 
-function deleteCard(item) {
+/* function deleteCard(item) {
   item.remove();
-}
+} */
 
-function handleLikeButton(e) {
+/* function handleLikeButton(e) {
   e.target.classList.toggle('place__like-button_active');
-}
+} */
 
-initialCards.forEach(function (element) {
+/* initialCards.forEach(function (element) {
   cardsContainer.append(createCard(element.name, element.link))
-})
+}) */
 
-function renderCard(evt) {
+/* function renderCard(evt) {
   evt.preventDefault();
 
   cardsContainer.prepend(createCard(newPlaceName.value, newPlaceLink.value));
   closePopup(popupAddCard);
-}
+} */
 
 formEditProfile.addEventListener('submit', handleSubmitForm);
 buttonEditProfile.addEventListener('click', openProfilePopup);
 buttonAddCard.addEventListener('click', openAddPopup);
 formAddCard.addEventListener('submit', renderCard);
-enableValidation(config);
+// enableValidation(config);
+
+
+const openImage = (cardData) => {
+  pictureView.src = cardData.link;
+  pictureView.alt = cardData.name;
+  pictureCupture.textContent = cardData.name;
+
+  openPopup(imagePopup);
+}
+
+initialCards.forEach((element) => {
+  const card = new Card(element, '.place-template', openImage);
+  const cardElement = card.generateCard()
+
+  cardsContainer.append(cardElement)
+})
+
+function renderCard(evt) {
+  evt.preventDefault();
+
+  const newCardData = {
+    name: newPlaceName.value,
+    link: newPlaceLink.value,
+  }
+
+  const card = new Card(newCardData, '.place-template', openImage);
+  const cardElement = card.generateCard()
+
+  cardsContainer.prepend(cardElement);
+  closePopup(popupAddCard);
+}
+
+
+const profileForm = new FormValidator (config, formEditProfile);
+const formNewCard = new FormValidator (config, formAddCard)
+
+profileForm.enableValidation()
+formNewCard.enableValidation()
