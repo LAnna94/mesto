@@ -14,12 +14,11 @@ export default class Card {
 
   generateCard() {
     this.element = this._getTemplate();
+    this._placePhoto = this.element.querySelector('.place__photo');
     this._setEventListeners();
-    this._pictureView = document.querySelector('.popup__big-picture-photo');
-    this._pictureCupture = document.querySelector('.popup__big-picture-capture');
 
-    this.element.querySelector('.place__photo').src = this._link;
-    this.element.querySelector('.place__photo').alt = this._name;
+    this._placePhoto.src = this._link;
+    this._placePhoto.alt = this._name;
     this.element.querySelector('.place__header').textContent = this._name
 
     return this.element
