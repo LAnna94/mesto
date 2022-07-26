@@ -52,10 +52,12 @@ function openProfilePopup() {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
 
+  profileForm.resetValidation()
+
   openPopup(popupEditProfile);
 }
 
-function handleSubmitForm(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -64,18 +66,16 @@ function handleSubmitForm(evt) {
   closePopup(popupEditProfile);
 }
 
-function openAddPopup() {
-  const buttonAddCard = document.querySelectorAll('.profile-form__save-button');
-
+function openAddCardPopup() {
   formAddCard.reset();
   formNewCard.resetValidation();
 
   openPopup(popupAddCard);
 }
 
-formEditProfile.addEventListener('submit', handleSubmitForm);
+formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 buttonEditProfile.addEventListener('click', openProfilePopup);
-buttonAddCard.addEventListener('click', openAddPopup);
+buttonAddCard.addEventListener('click', openAddCardPopup);
 formAddCard.addEventListener('submit', renderCard);
 
 
@@ -87,10 +87,15 @@ const openImage = (cardData) => {
   openPopup(imagePopup);
 }
 
-initialCards.forEach((element) => {
-  const card = new Card(element, '.place-template', openImage);
-  const cardElement = card.generateCard()
+function createCard(item) {
+  const card = new Card(item, '.place-template', openImage);
+  const cardElement = card.generateCard();
 
+  return cardElement
+}
+
+initialCards.forEach((element) => {
+  const cardElement = createCard(element);
   cardsContainer.append(cardElement)
 })
 
@@ -102,8 +107,7 @@ function renderCard(evt) {
     link: newPlaceLink.value,
   }
 
-  const card = new Card(newCardData, '.place-template', openImage);
-  const cardElement = card.generateCard()
+  const cardElement = createCard(newCardData);
 
   cardsContainer.prepend(cardElement);
   closePopup(popupAddCard);
