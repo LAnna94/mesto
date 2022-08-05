@@ -7,17 +7,15 @@ import Section from '../components/Section.js'
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-
-const buttonEditProfile = document.querySelector('.profile__button-edit-profile');
-const formEditProfile = document.querySelector('.profile-form');
-const nameInput = document.querySelector('.profile-form__input_type_name');
-const descriptionInput = document.querySelector('.profile-form__input_type_description');
-const buttonAddCard = document.querySelector('.profile__add-button');
-const formAddCard = document.querySelector('.add-form');
-const profileInfo = {
-  profileNameSelector: '.profile__name',
-  profileDescriptionSelector: '.profile__description',
-}
+import {
+  buttonEditProfile,
+  formEditProfile,
+  nameInput,
+  descriptionInput,
+  buttonAddCard,
+  formAddCard,
+  profileInfo
+} from '../utils/constants.js';
 
 
 
