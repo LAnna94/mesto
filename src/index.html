@@ -5,17 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 
 <body class="root">
   <header class="header">
-    <img src="images/logo.svg" alt="лого" class="header__logo">
+    <img src="<%=require('./images/logo.svg')%>" alt="лого" class="header__logo">
   </header>
   <main class="content">
     <section class="profile">
-      <img src="images/сousteau.jpg" alt="Аватар" class="profile__avatar">
+      <img src="<%=require('./images/сousteau.jpg')%>" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__header">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -67,7 +66,7 @@
       <h2 class="popup__title">Новое место</h2>
       <form name="add-card" class="profile-form add-form" novalidate>
         <fieldset class="profile-form__input-container">
-          <input type="text" name="placename" id="placename-input" placeholder="Название"
+          <input type="text" name="name" id="placename-input" placeholder="Название"
             class="profile-form__input profile-form__input_type_placename" minlength="2" maxlength="30" required>
           <span class="placename-input-error profile-form__input-error"></span>
           <input type="url" name="link" id="link-input" placeholder="Ссылка на картинку"
@@ -85,11 +84,6 @@
       <p class="popup__big-picture-capture"></p>
     </div>
   </div>
-  <script type="module" src="script/validate.js"></script>
-  <script type="module" src="script/index.js"></script>
-  <script type="module" src="script/initialCards.js"></script>
-  <script type="module" src="script/FormValidator.js"></script>
-  <script type="module" src="script/Card.js"></script>
 </body>
 
 </html>

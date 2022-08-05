@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, selector, openImagePopup) {
+  constructor(data, selector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._selector = selector;
-    this._openImage = openImagePopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -31,7 +31,7 @@ export default class Card {
     });
 
     this._placePhoto.addEventListener('click', () => {
-      this._openImage({name: this._name, link: this._link})
+      this._handleCardClick({name: this._name, link: this._link})
     });
 
     this.element.querySelector('.place__remove-button').addEventListener('click', () => {
