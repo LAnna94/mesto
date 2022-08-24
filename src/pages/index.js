@@ -2,11 +2,12 @@ import './index.css';
 import Card from '../components/Card.js';
 import { config } from '../utils/validate.js';
 import FormValidator from '../components/FormValidator.js';
-import { initialCards } from '../utils/initialCards.js'
 import Section from '../components/Section.js'
 import UserInfo from '../components/UserInfo.js';
+import Popup from '../components/Popup';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import {
   buttonEditProfile,
   formEditProfile,
@@ -14,27 +15,64 @@ import {
   descriptionInput,
   buttonAddCard,
   formAddCard,
-  profileInfo
+  profileInfo,
+  formEditAvatar,
+  buttonEditAvatar,
+  options
 } from '../utils/constants.js';
+import Api from '../components/Api.js';
 
+let userId
+
+const api = new Api(options)
 
 
 const profileForm = new FormValidator(config, formEditProfile);
 profileForm.enableValidation()
 
-const formNewCard = new FormValidator(config, formAddCard)
+const formNewCard = new FormValidator(config, formAddCard);
 formNewCard.enableValidation()
 
-
+const formNewAvatar = new FormValidator(config, formEditAvatar);
+formNewAvatar.enableValidation()
 
 const newUser = new UserInfo(profileInfo)
 
 
 
-const handleFormEditSubmit = (inputValues) => {
-  newUser.setUserInfo(inputValues);
 
-  formEditUserInfo.close()
+// Открытие попапа удаления карточки
+const handleRemoveCard = (card) => {
+  formWithComfirm.open(card)
+}
+
+// Удаление карточки
+const deleteCard = (card) => {
+  formWithComfirm.savingMode('Удаление...')
+  api.deleteCard(card._id)
+  .then(() => {
+    card.deleteCard();
+    formWithComfirm.close()
+  })
+  .catch(err => console.log('Ошибка. Запрос не выполнен: ', err))
+  .finally(() => formWithComfirm.setInitialCaption())
+}
+
+const formWithComfirm = new PopupWithConfirmation('#remove-card', deleteCard);
+formWithComfirm.setEventListeners()
+
+
+
+// Форма редактирования профиля
+const handleFormEditSubmit = (inputValues) => {
+  formEditUserInfo.savingMode('Сохранение...')
+  api.setProfileInfo(inputValues)
+  .then((res) => {
+    newUser.setUserInfo(res);
+    formEditUserInfo.close()
+  })
+  .catch(err => console.log('Ошибка. Запрос не выполнен: ', err))
+  .finally(() => formEditUserInfo.setInitialCaption())
 }
 
 const formEditUserInfo = new PopupWithForm('#edit-form', handleFormEditSubmit)
@@ -47,21 +85,73 @@ buttonEditProfile.addEventListener('click', () => {
 
   const userInfo = newUser.getUserInfo()
   nameInput.value = userInfo.name;
-  descriptionInput.value = userInfo.description;
+  descriptionInput.value = userInfo.about;
 });
 
 
+// Форма редактирования аватара
+const handleFormNewAvatar = (inputValues) => {
+  formEditAvatarPhoto.savingMode('Сохранение...')
+  api.setNewAvatar(inputValues)
+  .then((res) => {
+    newUser.setAvatar(res);
+    formEditAvatarPhoto.close()
+  })
+  .catch(err => console.log('Ошибка. Запрос не выполнен: ', err))
+  .finally(() => formEditAvatarPhoto.setInitialCaption())
+}
 
-const createCard = (item, cardSelector, handleClickImage) => {
-  const card = new Card(item, cardSelector, handleClickImage);
+const formEditAvatarPhoto = new PopupWithForm('#edit-avatar', handleFormNewAvatar)
+formEditAvatarPhoto.setEventListeners()
+
+buttonEditAvatar.addEventListener('click', () => {
+  formEditAvatarPhoto.open()
+
+  formNewAvatar.resetValidation();
+})
+
+const formConfirmDelete = new Popup('#remove-card');
+formConfirmDelete.setEventListeners()
+
+
+
+// лайк карточки
+const handleLikeClick = (card) => {
+  if(!card.isLiked) {
+    api.addLike(card._id)
+    .then((cardData) => {
+      card.setLikes(cardData.likes);
+      card.addCardLike();
+    })
+    .catch(err => console.log('Ошибка. Запрос не выполнен: ', err))
+  } else {
+    api.deleteLike(card._id)
+    .then((cardData) => {
+      card.setLikes(cardData.likes)
+      card.removeCardLike();
+    })
+    .catch(err => console.log('Ошибка. Запрос не выполнен: ', err))
+  }
+}
+
+
+const createCard = (item, cardSelector, handleClickImage, handleLikeClick, userId, handleRemoveCard) => {
+  const card = new Card(item, cardSelector, handleClickImage, handleLikeClick, userId, handleRemoveCard);
   const cardElement = card.generateCard();
 
   return cardElement
 }
 
+// Форма добавления новой карточки
 const handleFormAddCard = (inputValues) => {
-  initialSection.addItem(createCard(inputValues, '.place-template', openImage));
-  formAddNewCard.close();
+  formAddNewCard.savingMode('Создание...')
+  api.addNewCard(inputValues)
+  .then((res) => {
+    initialSection.addItem(createCard(res, '.place-template', openImage, handleLikeClick, userId, handleRemoveCard));
+    formAddNewCard.close();
+  })
+  .catch((err) => console.log('Ошибка. Запрос не выполнен: ', err))
+  .finally(() => formAddNewCard.setInitialCaption())
 }
 
 const formAddNewCard = new PopupWithForm('#add-form', handleFormAddCard);
@@ -82,12 +172,25 @@ const openImage = (cardData) => {
 }
 
 
-
 const initialSection = new Section({
-  items: initialCards,
+  items: {},
   renderer: (cardItem) => {
-    initialSection.addItem(createCard(cardItem, '.place-template', openImage));
+    initialSection.addItem(createCard(cardItem, '.place-template', openImage, handleLikeClick, userId, handleRemoveCard));
   }
 }, '.place')
 
-initialSection.renderItems()
+
+
+// загрузка первоначальной информации на страницу: карточки + пользователь
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+.then(([dataUserInfo, initialCardsData]) => {
+  newUser.setUserInfo(dataUserInfo);
+  newUser.setAvatar(dataUserInfo);
+  userId = dataUserInfo._id;
+  initialSection.renderItems(initialCardsData, userId);
+})
+.catch(err => console.log('Ошибка. Запрос не выполнен: ', err))
+

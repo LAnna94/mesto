@@ -1,38 +1,27 @@
 import Popup from './Popup.js';
 
-export default class PopupWithForm extends Popup {
+export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._formElement = this._popupElement.querySelector('.profile-form');
-    this._inputList = this._formElement.querySelectorAll('.profile-form__input');
     this._submitButton = this._formElement.querySelector('.profile-form__save-button');
     this._initialCaption = this._submitButton.textContent;
   }
 
-  _getInputValues() {
-    this._formValues = {}
-
-    this._inputList.forEach(input => {
-      this._formValues[input.name] = input.value;
-    });
-
-    return this._formValues;
+  open(id, card) {
+    super.open();
+    this._id = id;
+    this._card = card;
   }
 
-  setEventListeners() {
+  setEventListeners () {
     super.setEventListeners();
-
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
 
-      this._handleFormSubmit(this._getInputValues())
+      this._handleFormSubmit(this._id, this._card)
     })
-  }
-
-  close() {
-    super.close();
-    this._formElement.reset()
   }
 
   savingMode(text) {

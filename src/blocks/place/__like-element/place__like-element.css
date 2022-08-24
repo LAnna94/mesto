@@ -1,0 +1,4 @@
+.place__like-element {
+  display: flex;
+  flex-direction: column;
+}

@@ -11,6 +11,7 @@
   padding: 0;
   border: none;
   transition: 0.5s;
+  margin: 0 auto;
 }
 
 .profile-form__save-button:hover {

@@ -1,0 +1,12 @@
+.place__like-number {
+  max-width: 10px;
+  max-height: 13px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  align-self: center;
+  color: #000000;
+  margin-top: 3px;
+  display: none;
+}

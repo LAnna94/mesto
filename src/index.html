@@ -15,6 +15,7 @@
   <main class="content">
     <section class="profile">
       <img src="<%=require('./images/сousteau.jpg')%>" alt="Аватар" class="profile__avatar">
+      <button type="button" class="profile__edit-avatar" aria-label="Редактировать фото профиля"></button>
       <div class="profile__info">
         <div class="profile__header">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -39,7 +40,10 @@
       <button type="button" class="place__remove-button" aria-label="Удалить карточку"></button>
       <div class="place__description">
         <h2 class="place__header"></h2>
-        <button type="button" class="place__like-button" aria-label="Нравится"></button>
+        <div class="place__like-element">
+          <button type="button" class="place__like-button" aria-label="Нравится"></button>
+          <div class="place__like-number place__like-number_visible"></div>
+        </div>
       </div>
     </li>
   </template>
@@ -49,10 +53,10 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="edit-profile" class="profile-form" novalidate>
         <fieldset class="profile-form__input-container">
-          <input type="text" name="username" id="name-input" class="profile-form__input profile-form__input_type_name"
+          <input type="text" name="name" id="name-input" class="profile-form__input profile-form__input_type_name"
             minlength="2" maxlength="40" required>
           <span class="name-input-error profile-form__input-error"></span>
-          <input type="text" name="description" id="description-input"
+          <input type="text" name="about" id="description-input"
             class="profile-form__input profile-form__input_type_description" minlength="2" maxlength="200" required>
           <span class="description-input-error profile-form__input-error"></span>
         </fieldset>
@@ -82,6 +86,29 @@
       <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
       <img class="popup__big-picture-photo">
       <p class="popup__big-picture-capture"></p>
+    </div>
+  </div>
+  <div class="popup" id="remove-card">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
+      <form name="remove-card" class="profile-form remove-card" novalidate>
+        <button type="submit" class="profile-form__save-button profile-form__confirm-button">Да</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="edit-avatar">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button" aria-label="Закрыть всплывающее окно"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form name="edit-avatar" class="profile-form edit-avatar" novalidate>
+        <fieldset class="profile-form__input-container">
+          <input type="url" name="avatar" id="avatar-input" placeholder="Ссылка на фото"
+            class="profile-form__input profile-form__input_type_avatar" required>
+          <span class="avatar-input-error profile-form__input-error"></span>
+        </fieldset>
+        <button type="submit" class="profile-form__save-button">Сохранить</button>
+      </form>
     </div>
   </div>
 </body>
