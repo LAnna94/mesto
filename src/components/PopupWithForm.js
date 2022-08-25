@@ -42,4 +42,5 @@ export default class PopupWithForm extends Popup {
   setInitialCaption() {
     this._submitButton.textContent = this._initialCaption;
   }
+
 }
