@@ -83,7 +83,7 @@ buttonEditProfile.addEventListener('click', () => {
 
   profileForm.resetValidation();
 
-  profileForm.setInputValues(userInfo);
+  const userInfo = newUser.getUserInfo()
   nameInput.value = userInfo.name;
   descriptionInput.value = userInfo.about;
 
